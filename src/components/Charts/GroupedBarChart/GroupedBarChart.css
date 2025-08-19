@@ -1,0 +1,4 @@
+.bar:hover {
+    filter: brightness(1.1);
+    cursor: pointer;
+  }
