@@ -1,10 +1,19 @@
-import React, { useState, useRef } from 'react';
-import StackedBarChart from './StackedBarChart.jsx';
+import React, { useState, useRef } from "react";
+import StackedBarChart from "./StackedBarChart.jsx";
 
-export default function StackedBarChartWrapper({ data, cohortColorMap, cohortTotalCounts }) {
+export default function StackedBarChartWrapper({
+  data,
+  cohortColorMap,
+  cohortTotalCounts,
+}) {
   const { domainKey, transformedData, top10ItemNames, orderedCohorts } = data;
 
-  const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, content: '' });
+  const [tooltip, setTooltip] = useState({
+    visible: false,
+    x: 0,
+    y: 0,
+    content: "",
+  });
   const containerRef = useRef(null);
 
   const handleMouseOver = (event, d, cohort) => {
@@ -26,7 +35,6 @@ export default function StackedBarChartWrapper({ data, cohortColorMap, cohortTot
         </div>
       `;
 
-
     const containerRect = containerRef.current.getBoundingClientRect();
     const tooltipX = event.clientX - containerRect.left + 15;
     const tooltipY = event.clientY - containerRect.top;
@@ -35,7 +43,7 @@ export default function StackedBarChartWrapper({ data, cohortColorMap, cohortTot
   };
 
   const handleMouseOut = () => {
-    setTooltip(prev => ({ ...prev, visible: false }));
+    setTooltip((prev) => ({ ...prev, visible: false }));
   };
 
   return (

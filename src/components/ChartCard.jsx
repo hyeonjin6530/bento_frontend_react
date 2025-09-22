@@ -1,24 +1,23 @@
-import React from 'react';
+import React from "react";
 
 export default function ChartCard({
-  title = '',
-  description = '',
-  type = 'full',
-  height = '300px',
+  title = "",
+  description = "",
+  type = "full",
+  height = "300px",
   hasTableView = false,
   isTableView = false,
   hasXButton = true,
-  children,         
-  tableContent,     
+  children,
+  tableContent,
   onClose = () => {},
-  onToggleView = () => {}
+  onToggleView = () => {},
 }) {
-
   const typeClasses = {
-    full: 'col-span-1 md:col-span-6',
-    half: 'col-span-1 md:col-span-3',
-    third: 'col-span-1 md:col-span-2',
-};
+    full: "col-span-1 md:col-span-6",
+    half: "col-span-1 md:col-span-3",
+    third: "col-span-1 md:col-span-2",
+  };
 
   return (
     <div
@@ -32,13 +31,13 @@ export default function ChartCard({
           {hasTableView && (
             <div className="flex rounded-full border border-gray-200 p-0.5 bg-gray-50">
               <button
-                className={`px-2 py-0.5 text-xs rounded-full transition-colors ${!isTableView ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}
+                className={`px-2 py-0.5 text-xs rounded-full transition-colors ${!isTableView ? "bg-white text-blue-600 shadow-sm" : "text-gray-600 hover:text-gray-900"}`}
                 onClick={() => onToggleView(false)}
               >
                 Chart
               </button>
               <button
-                className={`px-2 py-0.5 text-xs rounded-full transition-colors ${isTableView ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}
+                className={`px-2 py-0.5 text-xs rounded-full transition-colors ${isTableView ? "bg-white text-blue-600 shadow-sm" : "text-gray-600 hover:text-gray-900"}`}
                 onClick={() => onToggleView(true)}
               >
                 Table
