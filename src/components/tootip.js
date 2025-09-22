@@ -6,16 +6,16 @@ export function tooltip(element) {
   function mouseOver(event) {
     // NOTE: remove the `title` attribute, to prevent showing the default browser tooltip
     // remember to set it back on `mouseleave`
-    start_date = element.getAttribute("start_date");
-    element.removeAttribute("start_date");
+    start_date = element.getAttribute('start_date');
+    element.removeAttribute('start_date');
 
-    end_date = element.getAttribute("end_date");
-    element.removeAttribute("end_date");
+    end_date = element.getAttribute('end_date');
+    element.removeAttribute('end_date');
 
-    visit_concept_id = element.getAttribute("visit_concept_id");
-    element.removeAttribute("visit_concept_id");
+    visit_concept_id = element.getAttribute('visit_concept_id');
+    element.removeAttribute('visit_concept_id');
 
-    div = document.createElement("div");
+    div = document.createElement('div');
     div.textContent = `visit_concept_id : ${visit_concept_id}\nstart_date : ${start_date}\nend_date : ${end_date}`;
     div.style = `
 			border: 1px solid #ddd;
@@ -38,20 +38,20 @@ export function tooltip(element) {
   function mouseLeave() {
     document.body.removeChild(div);
     // NOTE: restore the `title` attribute
-    element.setAttribute("visit_concept_id", visit_concept_id);
-    element.setAttribute("start_date", start_date);
-    element.setAttribute("end_date", end_date);
+    element.setAttribute('visit_concept_id', visit_concept_id);
+    element.setAttribute('start_date', start_date);
+    element.setAttribute('end_date', end_date);
   }
 
-  element.addEventListener("mouseover", mouseOver);
-  element.addEventListener("mouseleave", mouseLeave);
-  element.addEventListener("mousemove", mouseMove);
+  element.addEventListener('mouseover', mouseOver);
+  element.addEventListener('mouseleave', mouseLeave);
+  element.addEventListener('mousemove', mouseMove);
 
   return {
     destroy() {
-      element.removeEventListener("mouseover", mouseOver);
-      element.removeEventListener("mouseleave", mouseLeave);
-      element.removeEventListener("mousemove", mouseMove);
+      element.removeEventListener('mouseover', mouseOver);
+      element.removeEventListener('mouseleave', mouseLeave);
+      element.removeEventListener('mousemove', mouseMove);
     },
   };
 }

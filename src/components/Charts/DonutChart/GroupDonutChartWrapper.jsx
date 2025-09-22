@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from "react";
-import DonutChart from "./DonutChart.jsx";
-import Legend from "./Legend.jsx";
+import React, { useState, useMemo } from 'react';
+import DonutChart from './DonutChart.jsx';
+import Legend from './Legend.jsx';
 
 export default function GroupDonutChartWrapper({ data = [] }) {
   const [hoveredLabel, setHoveredLabel] = useState(null);
@@ -10,7 +10,7 @@ export default function GroupDonutChartWrapper({ data = [] }) {
       data?.map((cohort) => ({ name: cohort.cohortName, data: cohort.data })) ||
       [];
     const allUniqueData = pData.reduce((acc, cohort) => {
-      if (cohort.data && typeof cohort.data === "object") {
+      if (cohort.data && typeof cohort.data === 'object') {
         Object.entries(cohort.data).forEach(([label, value]) => {
           if (!acc.find((d) => d.label === label)) acc.push({ label, value });
         });
@@ -25,16 +25,16 @@ export default function GroupDonutChartWrapper({ data = [] }) {
   }, [data]);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex w-full flex-col items-center justify-center">
       <div className="w-full overflow-x-auto">
         <div
-          className="flex flex-row justify-center items-start gap-2 px-4"
-          style={{ minWidth: "400px" }}
+          className="flex flex-row items-start justify-center gap-2 px-4"
+          style={{ minWidth: '400px' }}
         >
           {processedData.map((chart) => (
             <div
               key={chart.name}
-              className="flex flex-col items-center w-[200px]"
+              className="flex w-[200px] flex-col items-center"
             >
               <DonutChart
                 data={chart.data}
@@ -45,7 +45,7 @@ export default function GroupDonutChartWrapper({ data = [] }) {
               />
               <span
                 className="break-words text-center text-sm font-medium text-gray-600"
-                style={{ maxWidth: "160px" }}
+                style={{ maxWidth: '160px' }}
               >
                 {chart.name}
               </span>

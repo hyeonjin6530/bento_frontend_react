@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+import * as d3 from 'd3';
 
 export function transformTopTenData(data, domainKey, viewType) {
   if (!data || data.length === 0) {
@@ -13,12 +13,12 @@ export function transformTopTenData(data, domainKey, viewType) {
 
   const cohorts = [...new Set(data.map((d) => d.cohort))];
   const orderedCohorts =
-    viewType === "combined"
+    viewType === 'combined'
       ? cohorts
       : [viewType, ...cohorts.filter((c) => c !== viewType)];
 
   let top10ItemNames;
-  if (viewType === "combined") {
+  if (viewType === 'combined') {
     const totalItemCounts = d3.rollup(
       data,
       (v) => d3.sum(v, (d) => d.count),

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import DonutChart from "./DonutChart.jsx";
-import Legend from "./Legend.jsx";
+import React, { useState } from 'react';
+import DonutChart from './DonutChart.jsx';
+import Legend from './Legend.jsx';
 
 export default function SingleDonutChartWrapper({ data = {} }) {
   const [hoveredLabel, setHoveredLabel] = useState(null);
 
   return (
-    <div className="flex flex-col items-center justify-start h-full w-full">
+    <div className="flex h-full w-full flex-col items-center justify-start">
       <div className="flex items-center justify-center">
         <DonutChart
           data={data}

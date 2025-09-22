@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,23 +21,23 @@ export default function Layout() {
   };
 
   return (
-    <div className="overflow-x-auto min-h-screen">
+    <div className="min-h-screen overflow-x-auto">
       <header
-        className="fixed left-0 top-0 w-full z-50"
+        className="fixed left-0 top-0 z-50 w-full"
         onMouseLeave={handleMouseLeave} // 헤더 영역을 떠나면 메뉴가 닫히도록 설정
       >
-        <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-b border-slate-300/80"></div>
+        <div className="absolute inset-0 border-b border-slate-300/80 bg-white/90 backdrop-blur-sm"></div>
 
         <div className="relative mx-auto max-w-[1280px] px-8">
           <div className="flex h-[60px]">
             {/* 로고 영역: <a> -> <Link> */}
             <Link
               to="/"
-              className="w-[200px] h-[60px] flex items-center justify-center gap-2"
+              className="flex h-[60px] w-[200px] items-center justify-center gap-2"
             >
               {/* 로고 SVG */}
               <svg
-                className="w-7 h-7 text-blue-600"
+                className="h-7 w-7 text-blue-600"
                 viewBox="150 130 250 330"
                 fill="none"
               >
@@ -63,29 +63,29 @@ export default function Layout() {
                 {/* 각 메뉴 아이템: on:event -> onEvent */}
                 <Link
                   to="/cohort"
-                  onMouseEnter={() => handleMouseEnter("cohorts")}
-                  className={`flex items-center h-[60px] w-[160px] px-6 text-[15px] transition-all duration-200 hover:text-slate-900 hover:font-semibold ${activeMenu === "cohorts" ? "text-slate-900 font-semibold" : "text-slate-700 font-medium"}`}
+                  onMouseEnter={() => handleMouseEnter('cohorts')}
+                  className={`flex h-[60px] w-[160px] items-center px-6 text-[15px] transition-all duration-200 hover:font-semibold hover:text-slate-900 ${activeMenu === 'cohorts' ? 'font-semibold text-slate-900' : 'font-medium text-slate-700'}`}
                 >
                   Cohorts
                 </Link>
                 <Link
                   to="/person"
-                  onMouseEnter={() => handleMouseEnter("person")}
-                  className={`flex items-center h-[60px] w-[200px] px-6 text-[15px] transition-all duration-200 hover:text-slate-900 hover:font-semibold ${activeMenu === "person" ? "text-slate-900 font-semibold" : "text-slate-700 font-medium"}`}
+                  onMouseEnter={() => handleMouseEnter('person')}
+                  className={`flex h-[60px] w-[200px] items-center px-6 text-[15px] transition-all duration-200 hover:font-semibold hover:text-slate-900 ${activeMenu === 'person' ? 'font-semibold text-slate-900' : 'font-medium text-slate-700'}`}
                 >
                   Person
                 </Link>
                 <Link
                   to="/custom-chart"
-                  onMouseEnter={() => handleMouseEnter("custom")}
-                  className={`flex items-center h-[60px] w-[200px] px-6 text-[15px] transition-all duration-200 hover:text-slate-900 hover:font-semibold ${activeMenu === "custom" ? "text-slate-900 font-semibold" : "text-slate-700 font-medium"}`}
+                  onMouseEnter={() => handleMouseEnter('custom')}
+                  className={`flex h-[60px] w-[200px] items-center px-6 text-[15px] transition-all duration-200 hover:font-semibold hover:text-slate-900 ${activeMenu === 'custom' ? 'font-semibold text-slate-900' : 'font-medium text-slate-700'}`}
                 >
                   Custom Chart
                 </Link>
                 <Link
                   to="/guide"
-                  onMouseEnter={() => handleMouseEnter("about")}
-                  className={`flex items-center h-[60px] w-[200px] px-6 text-[15px] transition-all duration-200 hover:text-slate-900 hover:font-semibold ${activeMenu === "about" ? "text-slate-900 font-semibold" : "text-slate-700 font-medium"}`}
+                  onMouseEnter={() => handleMouseEnter('about')}
+                  className={`flex h-[60px] w-[200px] items-center px-6 text-[15px] transition-all duration-200 hover:font-semibold hover:text-slate-900 ${activeMenu === 'about' ? 'font-semibold text-slate-900' : 'font-medium text-slate-700'}`}
                 >
                   About
                 </Link>
@@ -93,13 +93,13 @@ export default function Layout() {
               <div className="flex w-full justify-end">
                 <Link
                   to="/login"
-                  className="flex items-center h-[60px] px-6 text-[15px] transition-all duration-200 hover:text-slate-900 hover:font-semibold"
+                  className="flex h-[60px] items-center px-6 text-[15px] transition-all duration-200 hover:font-semibold hover:text-slate-900"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className="flex items-center h-[60px] px-6 text-[15px] transition-all duration-200 hover:text-slate-900 hover:font-semibold"
+                  className="flex h-[60px] items-center px-6 text-[15px] transition-all duration-200 hover:font-semibold hover:text-slate-900"
                 >
                   Register
                 </Link>
@@ -111,8 +111,8 @@ export default function Layout() {
         {/* 드롭다운 패널: {#if ...} -> {isMenuOpen && ...} */}
         {isMenuOpen && (
           <div
-            className="absolute left-0 right-0 w-full bg-white/95 backdrop-blur-sm border-b border-slate-300/80 shadow-sm"
-            style={{ top: "60px" }}
+            className="absolute left-0 right-0 w-full border-b border-slate-300/80 bg-white/95 shadow-sm backdrop-blur-sm"
+            style={{ top: '60px' }}
             onMouseEnter={() => clearTimeout(menuCloseTimer)} // 패널에 마우스가 들어가면 닫기 타이머 취소
             onMouseLeave={handleMouseLeave} // 패널에서 마우스를 떼면 닫기
           >
@@ -121,74 +121,74 @@ export default function Layout() {
               <div className="flex">
                 <div className="w-[200px]"></div>
                 <div className="flex">
-                  <div className="w-[160px] py-4 border-r">
+                  <div className="w-[160px] border-r py-4">
                     <ul className="space-y-3">
-                      <li onMouseEnter={() => setActiveMenu("cohorts")}>
+                      <li onMouseEnter={() => setActiveMenu('cohorts')}>
                         <Link
                           to="/cohort"
-                          className="block text-sm text-slate-600 hover:text-blue-600 px-6"
+                          className="block px-6 text-sm text-slate-600 hover:text-blue-600"
                         >
                           Cohort List
                         </Link>
                       </li>
-                      <li onMouseEnter={() => setActiveMenu("cohorts")}>
+                      <li onMouseEnter={() => setActiveMenu('cohorts')}>
                         <Link
-                          to="/new"
-                          className="block text-sm text-slate-600 hover:text-blue-600 px-6"
+                          to="/cohort-definition"
+                          className="block px-6 text-sm text-slate-600 hover:text-blue-600"
                         >
                           Cohort Definition
                         </Link>
                       </li>
                     </ul>
                   </div>
-                  <div className="w-[200px] py-4 border-r">
+                  <div className="w-[200px] border-r py-4">
                     <ul className="space-y-3">
-                      <li onMouseEnter={() => setActiveMenu("person")}>
+                      <li onMouseEnter={() => setActiveMenu('person')}>
                         <Link
                           to="/person"
-                          className="block text-sm text-slate-600 hover:text-blue-600 px-6"
+                          className="block px-6 text-sm text-slate-600 hover:text-blue-600"
                         >
                           Person Search
                         </Link>
                       </li>
                     </ul>
                   </div>
-                  <div className="w-[200px] py-4 border-r">
+                  <div className="w-[200px] border-r py-4">
                     <ul className="space-y-3">
-                      <li onMouseEnter={() => setActiveMenu("custom")}>
+                      <li onMouseEnter={() => setActiveMenu('custom')}>
                         <Link
                           to="/custom-chart"
-                          className="block text-sm text-slate-600 hover:text-blue-600 px-6"
+                          className="block px-6 text-sm text-slate-600 hover:text-blue-600"
                         >
                           Chart Set List
                         </Link>
                       </li>
-                      <li onMouseEnter={() => setActiveMenu("custom")}>
+                      <li onMouseEnter={() => setActiveMenu('custom')}>
                         <Link
                           to="/custom-chart/new"
-                          className="block text-sm text-slate-600 hover:text-blue-600 px-6"
+                          className="block px-6 text-sm text-slate-600 hover:text-blue-600"
                         >
                           Chart Definition
                         </Link>
                       </li>
                     </ul>
                   </div>
-                  <div className="w-[200px] py-4 border-r">
+                  <div className="w-[200px] border-r py-4">
                     <ul className="space-y-3">
-                      <li onMouseEnter={() => setActiveMenu("about")}>
+                      <li onMouseEnter={() => setActiveMenu('about')}>
                         <Link
                           to="/guide"
-                          className="block text-sm text-slate-600 hover:text-blue-600 px-6"
+                          className="block px-6 text-sm text-slate-600 hover:text-blue-600"
                         >
                           Guide
                         </Link>
                       </li>
-                      <li onMouseEnter={() => setActiveMenu("about")}>
+                      <li onMouseEnter={() => setActiveMenu('about')}>
                         <a
                           href="https://kookmin-sw.github.io/capstone-2025-16/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block text-sm text-slate-600 hover:text-blue-600 px-6"
+                          className="block px-6 text-sm text-slate-600 hover:text-blue-600"
                         >
                           About Us
                         </a>

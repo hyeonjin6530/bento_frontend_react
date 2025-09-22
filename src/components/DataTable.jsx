@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function DataTable({ data = { headers: [], rows: [] } }) {
   const { headers, rows } = data;
@@ -12,20 +12,20 @@ export default function DataTable({ data = { headers: [], rows: [] } }) {
               {headers.map((header) => (
                 <th
                   key={header}
-                  className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-2 py-2 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500"
                 >
                   {header}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="divide-y divide-gray-200 bg-white">
             {rows.map((row, rowIndex) => (
               <tr key={rowIndex} className="hover:bg-gray-50">
                 {headers.map((header) => (
                   <td
                     key={header}
-                    className="px-2 py-2 whitespace-nowrap text-[10px] text-gray-900"
+                    className="whitespace-nowrap px-2 py-2 text-[10px] text-gray-900"
                   >
                     {row[header]?.toLocaleString()}
                   </td>

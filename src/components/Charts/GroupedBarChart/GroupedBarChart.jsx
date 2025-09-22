@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useCallback } from "react";
-import * as d3 from "d3";
-import "./GroupedBarChart.css"; // 아래에서 만들 CSS 파일을 import 합니다.
+import React, { useRef, useEffect, useCallback } from 'react';
+import * as d3 from 'd3';
+import './GroupedBarChart.css'; // 아래에서 만들 CSS 파일을 import 합니다.
 
 const GroupedBarChart = ({ data }) => {
   const svgContainerRef = useRef(null);
@@ -40,7 +40,7 @@ const GroupedBarChart = ({ data }) => {
     const svgContainer = svgContainerRef.current;
     const chartData = transformData(data);
     if (chartData.length === 0) {
-      svgContainer.innerHTML = ""; // 데이터 없을 때 차트 비우기
+      svgContainer.innerHTML = ''; // 데이터 없을 때 차트 비우기
       return;
     }
 
@@ -53,7 +53,7 @@ const GroupedBarChart = ({ data }) => {
       marginTop = 40,
       marginBottom = 30;
 
-    svgContainer.innerHTML = "";
+    svgContainer.innerHTML = '';
 
     const fx = d3
       .scaleBand()
@@ -69,17 +69,17 @@ const GroupedBarChart = ({ data }) => {
       .rangeRound([0, fx.bandwidth()])
       .padding(0.05);
     const customColors = [
-      "#4595EC",
-      "#FF6B6B",
-      "#FFD166",
-      "#06D6A0",
-      "#9D8DF1",
+      '#4595EC',
+      '#FF6B6B',
+      '#FFD166',
+      '#06D6A0',
+      '#9D8DF1',
     ];
     const color = d3
       .scaleOrdinal()
       .domain(targets)
       .range(customColors)
-      .unknown("#ccc");
+      .unknown('#ccc');
     const y = d3
       .scaleLinear()
       .domain([0, d3.max(chartData, (d) => d.value)])
@@ -87,106 +87,106 @@ const GroupedBarChart = ({ data }) => {
       .range([height - marginBottom, marginTop]);
 
     const svg = d3
-      .create("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .attr("viewBox", [0, 0, width, height]);
+      .create('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('viewBox', [0, 0, width, height]);
 
     const tooltip = d3
       .select(document.body)
-      .append("div")
+      .append('div')
       .attr(
-        "class",
-        "grouped-barchart-tooltip fixed hidden bg-black/80 text-white px-3 py-2 rounded-md text-xs pointer-events-none",
+        'class',
+        'grouped-barchart-tooltip fixed hidden bg-black/80 text-white px-3 py-2 rounded-md text-xs pointer-events-none',
       );
 
     svg
-      .append("g")
-      .attr("class", "grid")
-      .attr("transform", `translate(${marginLeft},0)`)
+      .append('g')
+      .attr('class', 'grid')
+      .attr('transform', `translate(${marginLeft},0)`)
       .call(
         d3
           .axisLeft(y)
           .tickSize(-(width - marginRight - marginLeft))
-          .tickFormat(""),
+          .tickFormat(''),
       )
-      .call((g) => g.select(".domain").remove())
+      .call((g) => g.select('.domain').remove())
       .call((g) =>
         g
-          .selectAll(".tick line")
-          .attr("stroke", "#e0e0e0")
-          .attr("stroke-opacity", 0.5)
-          .attr("stroke-dasharray", "2,2"),
+          .selectAll('.tick line')
+          .attr('stroke', '#e0e0e0')
+          .attr('stroke-opacity', 0.5)
+          .attr('stroke-dasharray', '2,2'),
       );
 
     svg
-      .append("g")
-      .selectAll("g")
+      .append('g')
+      .selectAll('g')
       .data(d3.group(chartData, (d) => d.group))
-      .join("g")
-      .attr("transform", ([group]) => `translate(${fx(group)},0)`)
-      .selectAll("rect")
+      .join('g')
+      .attr('transform', ([group]) => `translate(${fx(group)},0)`)
+      .selectAll('rect')
       .data(([, d]) => d)
-      .join("rect")
-      .attr("x", (d) => x(d.target))
-      .attr("y", (d) => y(d.value))
-      .attr("width", x.bandwidth())
-      .attr("height", (d) => y(0) - y(d.value))
-      .attr("fill", (d) => color(d.target))
-      .on("mouseover", function (event, d) {
-        d3.select(this).attr("fill", d3.color(color(d.target)).brighter(0.5));
+      .join('rect')
+      .attr('x', (d) => x(d.target))
+      .attr('y', (d) => y(d.value))
+      .attr('width', x.bandwidth())
+      .attr('height', (d) => y(0) - y(d.value))
+      .attr('fill', (d) => color(d.target))
+      .on('mouseover', function (event, d) {
+        d3.select(this).attr('fill', d3.color(color(d.target)).brighter(0.5));
         tooltip
-          .style("visibility", "visible")
+          .style('visibility', 'visible')
           .html(
             `<strong>${d.group}</strong> | ${d.target}<br/>Value: ${d.value}`,
           );
       })
-      .on("mousemove", function (event) {
+      .on('mousemove', function (event) {
         tooltip
-          .style("top", event.pageY - 10 + "px")
-          .style("left", event.pageX + 10 + "px");
+          .style('top', event.pageY - 10 + 'px')
+          .style('left', event.pageX + 10 + 'px');
       })
-      .on("mouseout", function (event, d) {
-        d3.select(this).attr("fill", color(d.target));
-        tooltip.style("visibility", "hidden");
+      .on('mouseout', function (event, d) {
+        d3.select(this).attr('fill', color(d.target));
+        tooltip.style('visibility', 'hidden');
       });
 
     svg
-      .append("g")
-      .attr("transform", `translate(0,${height - marginBottom})`)
+      .append('g')
+      .attr('transform', `translate(0,${height - marginBottom})`)
       .call(d3.axisBottom(fx))
-      .call((g) => g.select(".domain").remove());
+      .call((g) => g.select('.domain').remove());
     svg
-      .append("g")
-      .attr("transform", `translate(${marginLeft},0)`)
-      .call(d3.axisLeft(y).ticks(5, "s"))
-      .call((g) => g.select(".domain").remove());
+      .append('g')
+      .attr('transform', `translate(${marginLeft},0)`)
+      .call(d3.axisLeft(y).ticks(5, 's'))
+      .call((g) => g.select('.domain').remove());
 
     const legend = svg
-      .append("g")
-      .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
-      .attr("text-anchor", "start");
+      .append('g')
+      .attr('font-family', 'sans-serif')
+      .attr('font-size', 10)
+      .attr('text-anchor', 'start');
     const legendItems = legend
-      .selectAll("g")
+      .selectAll('g')
       .data(targets.slice())
-      .join("g")
+      .join('g')
       .attr(
-        "transform",
+        'transform',
         (d, i) =>
           `translate(${width - marginRight - 100}, ${marginTop + i * 20})`,
       );
     legendItems
-      .append("rect")
-      .attr("x", 0)
-      .attr("width", 19)
-      .attr("height", 19)
-      .attr("fill", color);
+      .append('rect')
+      .attr('x', 0)
+      .attr('width', 19)
+      .attr('height', 19)
+      .attr('fill', color);
     legendItems
-      .append("text")
-      .attr("x", 24)
-      .attr("y", 9.5)
-      .attr("dy", "0.35em")
+      .append('text')
+      .attr('x', 24)
+      .attr('y', 9.5)
+      .attr('dy', '0.35em')
       .text((d) => d);
 
     svgContainer.appendChild(svg.node());
@@ -209,14 +209,14 @@ const GroupedBarChart = ({ data }) => {
         observer.unobserve(svgContainerRef.current);
       }
       // 컴포넌트가 사라질 때 body에 추가된 툴팁을 제거
-      d3.selectAll(".grouped-barchart-tooltip").remove();
+      d3.selectAll('.grouped-barchart-tooltip').remove();
     };
   }, [drawChart]);
 
   return (
     <div
       ref={svgContainerRef}
-      className="w-full h-full flex items-center justify-center relative"
+      className="relative flex h-full w-full items-center justify-center"
     ></div>
   );
 };

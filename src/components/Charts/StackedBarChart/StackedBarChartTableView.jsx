@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import DataTable from "../../DataTable";
+import React, { useMemo } from 'react';
+import DataTable from '../../DataTable';
 
 export default function StackedBarChartTableView({
   data,
@@ -9,12 +9,12 @@ export default function StackedBarChartTableView({
 }) {
   const tableData = useMemo(() => {
     const headers = [
-      "No.",
+      'No.',
       domainKey.charAt(0).toUpperCase() + domainKey.slice(1),
       ...orderedCohorts,
     ];
     const rows = data.map((item, index) => {
-      const row = { "No.": index + 1, [headers[1]]: item[domainKey] };
+      const row = { 'No.': index + 1, [headers[1]]: item[domainKey] };
       orderedCohorts.forEach((cohort) => {
         const value = +item[cohort];
         const total = +cohortTotalCounts[cohort];

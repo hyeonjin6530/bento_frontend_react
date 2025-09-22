@@ -1,16 +1,16 @@
-import React, { useState, useRef } from "react";
-import BarChart from "./BarChart.jsx";
+import React, { useState, useRef } from 'react';
+import BarChart from './BarChart.jsx';
 
 export default function BarChartWrapper({
   data = [],
-  cohortName = "",
+  cohortName = '',
   cohortTotalCount = 0,
 }) {
   const [tooltip, setTooltip] = useState({
     visible: false,
     x: 0,
     y: 0,
-    content: "",
+    content: '',
   });
   const chartContainerRef = useRef(null);
 
@@ -44,7 +44,7 @@ export default function BarChartWrapper({
   };
 
   return (
-    <div className="relative w-full h-full" ref={chartContainerRef}>
+    <div className="relative h-full w-full" ref={chartContainerRef}>
       <BarChart
         data={data}
         onMouseOver={handleMouseOver}
@@ -52,7 +52,7 @@ export default function BarChartWrapper({
       />
       {tooltip.visible && (
         <div
-          className="absolute bg-white/95 shadow-sm rounded-md border border-gray-100 z-50 pointer-events-none transition-all duration-75 backdrop-blur-sm"
+          className="pointer-events-none absolute z-50 rounded-md border border-gray-100 bg-white/95 shadow-sm backdrop-blur-sm transition-all duration-75"
           style={{ left: `${tooltip.x}px`, top: `${tooltip.y}px` }}
           dangerouslySetInnerHTML={{ __html: tooltip.content }}
         />

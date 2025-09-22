@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import StackedBarChart from "./StackedBarChart.jsx";
+import React, { useState, useRef } from 'react';
+import StackedBarChart from './StackedBarChart.jsx';
 
 export default function StackedBarChartWrapper({
   data,
@@ -12,7 +12,7 @@ export default function StackedBarChartWrapper({
     visible: false,
     x: 0,
     y: 0,
-    content: "",
+    content: '',
   });
   const containerRef = useRef(null);
 
@@ -47,7 +47,7 @@ export default function StackedBarChartWrapper({
   };
 
   return (
-    <div className="relative w-full h-full" ref={containerRef}>
+    <div className="relative h-full w-full" ref={containerRef}>
       <StackedBarChart
         stackData={transformedData}
         itemNames={top10ItemNames}
@@ -59,7 +59,7 @@ export default function StackedBarChartWrapper({
       />
       {tooltip.visible && (
         <div
-          className="absolute bg-white/95 shadow-sm rounded-md border border-gray-100 z-50 pointer-events-none transition-all duration-75 backdrop-blur-sm"
+          className="pointer-events-none absolute z-50 rounded-md border border-gray-100 bg-white/95 shadow-sm backdrop-blur-sm transition-all duration-75"
           style={{ left: `${tooltip.x}px`, top: `${tooltip.y}px` }}
           dangerouslySetInnerHTML={{ __html: tooltip.content }}
         />

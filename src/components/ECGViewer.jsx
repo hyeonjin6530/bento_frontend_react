@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import { xmlParseToJson } from "../ecgparse"; // ecgparse.js 유틸리티 필요
-import * as d3 from "d3";
+import React, { useState, useEffect, useRef } from 'react';
+import { xmlParseToJson } from '../ecgparse'; // ecgparse.js 유틸리티 필요
+import * as d3 from 'd3';
 
 export default function ECGViewer({ filePath }) {
   const containerRef = useRef(null);
@@ -46,41 +46,41 @@ export default function ECGViewer({ filePath }) {
 
         const svg = d3
           .select(container)
-          .append("svg")
-          .attr("width", width)
-          .attr("height", height);
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height);
         svg
-          .append("rect")
-          .attr("width", "100%")
-          .attr("height", "100%")
-          .attr("fill", "white");
+          .append('rect')
+          .attr('width', '100%')
+          .attr('height', '100%')
+          .attr('fill', 'white');
         svg
-          .append("text")
-          .attr("x", margin.left)
-          .attr("y", 15)
-          .attr("fill", "#333")
+          .append('text')
+          .attr('x', margin.left)
+          .attr('y', 15)
+          .attr('fill', '#333')
           .text(leadId);
         svg
-          .append("path")
+          .append('path')
           .datum(values)
-          .attr("fill", "none")
-          .attr("stroke", "#007acc")
-          .attr("stroke-width", 1)
-          .attr("d", line);
+          .attr('fill', 'none')
+          .attr('stroke', '#007acc')
+          .attr('stroke-width', 1)
+          .attr('d', line);
       }
 
       async function renderAllECGWaveforms(container, waveformList) {
         if (!container) return;
-        d3.select(container).selectAll("*").remove();
+        d3.select(container).selectAll('*').remove();
 
         waveformList.forEach((waveform) => {
           const SampleBase = waveform.SampleBase;
           const waveformContainer = d3
             .select(container)
-            .append("div")
-            .attr("class", "waveformContainer")
-            .style("display", "flex")
-            .style("overflow-x", "auto");
+            .append('div')
+            .attr('class', 'waveformContainer')
+            .style('display', 'flex')
+            .style('overflow-x', 'auto');
 
           waveform.LeadData.forEach((lead) => {
             const {
@@ -95,9 +95,9 @@ export default function ECGViewer({ filePath }) {
               LeadAmplitudeUnitsPerBit,
             );
             const leadContainer = waveformContainer
-              .append("div")
-              .attr("class", "leadContainer")
-              .style("margin-bottom", "24px")
+              .append('div')
+              .attr('class', 'leadContainer')
+              .style('margin-bottom', '24px')
               .node();
 
             drawLeadChart(leadContainer, decoded, duration, LeadID);
@@ -120,18 +120,18 @@ export default function ECGViewer({ filePath }) {
   return (
     <>
       <button
-        className="px-3 py-1 mb-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        className="mb-2 rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600"
         onClick={() => setShowCharts((prev) => !prev)}
       >
-        {showCharts ? "Hide ECG Graphs" : "Show ECG Graphs"}
+        {showCharts ? 'Hide ECG Graphs' : 'Show ECG Graphs'}
       </button>
       <div
         ref={containerRef}
         className="max-h-[1000px] overflow-hidden transition-all duration-500"
         style={{
           opacity: showCharts ? 1 : 0,
-          height: showCharts ? "auto" : "0",
-          pointerEvents: showCharts ? "auto" : "none",
+          height: showCharts ? 'auto' : '0',
+          pointerEvents: showCharts ? 'auto' : 'none',
         }}
       ></div>
     </>

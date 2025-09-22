@@ -1,11 +1,11 @@
-import React from "react";
-import PaginatedTable from "./PaginatedTable";
+import React from 'react';
+import PaginatedTable from './PaginatedTable';
 
 const columns = [
-  { header: "Concept ID", accessor: "concept_name" },
-  { header: "Date", accessor: "measurement_date" },
+  { header: 'Concept ID', accessor: 'concept_name' },
+  { header: 'Date', accessor: 'measurement_date' },
   {
-    header: "Value",
+    header: 'Value',
     Cell: ({ row }) => `${row.value_as_number} ${row.unit_source_value}`,
   },
 ];

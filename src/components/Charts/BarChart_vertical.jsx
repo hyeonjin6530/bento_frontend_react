@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from "react";
-import * as d3 from "d3";
-import "./BarChartVertical.css";
+import React, { useState, useMemo } from 'react';
+import * as d3 from 'd3';
+import './BarChartVertical.css';
 
 export default function BarChartVertical({ data = [] }) {
   const [hoveredBar, setHoveredBar] = useState(null);
@@ -72,7 +72,7 @@ export default function BarChartVertical({ data = [] }) {
             x={xScale(d.label) + xScale.bandwidth() / 2}
             y="20"
             textAnchor="middle"
-            className={`axis-label ${hoveredBar === d ? "bold" : ""}`}
+            className={`axis-label ${hoveredBar === d ? 'bold' : ''}`}
           >
             {d.label}
           </text>

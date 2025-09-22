@@ -1,20 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Footer 컴포넌트의 경로는 실제 위치에 맞게 조정해야 할 수 있습니다.
-import Footer from "../components/Footer";
+import Footer from '../../components/Footer.jsx';
 
 export default function HomePage() {
   return (
     <>
       <title>Bento - Medical Data Analytics</title>
 
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-[80px] relative overflow-hidden">
+      <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-blue-50 to-white pt-[80px]">
         {/* 배경 로고 */}
-        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 opacity-[0.05] pointer-events-none">
+        <div className="pointer-events-none absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 opacity-[0.05]">
           {/* 2. SVG 속성 이름 변경: class -> className */}
           <svg
-            className="w-[720px] h-[720px]"
+            className="h-[720px] w-[720px]"
             viewBox="130 130 340 340"
             fill="none"
           >
@@ -29,27 +29,27 @@ export default function HomePage() {
           </svg>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="flex justify-center items-center mb-6">
+            <div className="mb-6 flex items-center justify-center">
               <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
-                Welcome to{" "}
+                Welcome to{' '}
                 <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">
                   Bento
                 </span>
               </h1>
             </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            <p className="mx-auto mb-12 max-w-3xl text-xl text-gray-600">
               Explore and analyze your CDM data with powerful cohort analysis
               tools
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
             <Link to="/cohort" className="group">
-              <div className="bg-white rounded-lg shadow-md p-6 h-full hover:shadow-lg transition-shadow border border-gray-100">
-                <div className="text-4xl mb-4">👥</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+              <div className="h-full rounded-lg border border-gray-100 bg-white p-6 shadow-md transition-shadow hover:shadow-lg">
+                <div className="mb-4 text-4xl">👥</div>
+                <h3 className="mb-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
                   Cohort Builder
                 </h3>
                 <p className="text-gray-600">
@@ -60,9 +60,9 @@ export default function HomePage() {
             </Link>
 
             <Link to="/cohort" className="group">
-              <div className="bg-white rounded-lg shadow-md p-6 h-full hover:shadow-lg transition-shadow border border-gray-100">
-                <div className="text-4xl mb-4">🔍</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+              <div className="h-full rounded-lg border border-gray-100 bg-white p-6 shadow-md transition-shadow hover:shadow-lg">
+                <div className="mb-4 text-4xl">🔍</div>
+                <h3 className="mb-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
                   CDM Viewer
                 </h3>
                 <p className="text-gray-600">
@@ -73,9 +73,9 @@ export default function HomePage() {
             </Link>
 
             <Link to="/custom-chart" className="group">
-              <div className="bg-white rounded-lg shadow-md p-6 h-full hover:shadow-lg transition-shadow border border-gray-100">
-                <div className="text-4xl mb-4">📊</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+              <div className="h-full rounded-lg border border-gray-100 bg-white p-6 shadow-md transition-shadow hover:shadow-lg">
+                <div className="mb-4 text-4xl">📊</div>
+                <h3 className="mb-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
                   Custom Chart
                 </h3>
                 <p className="text-gray-600">
@@ -88,21 +88,21 @@ export default function HomePage() {
           </div>
 
           <div className="mt-20 text-center">
-            <h2 className="text-xl font-semibold text-gray-600 mb-8">
+            <h2 className="mb-8 text-xl font-semibold text-gray-600">
               Need more information?
             </h2>
-            <div className="flex flex-col md:flex-row gap-6 justify-center">
+            <div className="flex flex-col justify-center gap-6 md:flex-row">
               {/* 외부 링크는 <a> 태그 유지 */}
               <a
                 href="https://kookmin-sw.github.io/capstone-2025-16"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden rounded-full bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+                className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 px-8 py-3 text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 <span className="relative flex items-center gap-2">
                   {/* 4. SVG 속성 이름 변경: stroke-width -> strokeWidth 등 */}
                   <svg
-                    className="w-5 h-5"
+                    className="h-5 w-5"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -119,11 +119,11 @@ export default function HomePage() {
               </a>
               <Link
                 to="/guide"
-                className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden rounded-full bg-white border border-blue-200 text-blue-600 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-300 hover:scale-105"
+                className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-blue-200 bg-white px-8 py-3 text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:border-blue-300 hover:shadow-xl"
               >
                 <span className="relative flex items-center gap-2">
                   <svg
-                    className="w-5 h-5"
+                    className="h-5 w-5"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"

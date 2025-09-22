@@ -1,5 +1,5 @@
-import React from "react";
-import "./CDMInfo.css";
+import React from 'react';
+import './CDMInfo.css';
 
 export default function CDMInfo({ visitOccurrence, careSite, location }) {
   return (
@@ -11,7 +11,7 @@ export default function CDMInfo({ visitOccurrence, careSite, location }) {
             <strong>Visit ID:</strong> {visitOccurrence?.visit_occurrence_id}
           </span>
           <span className="info">
-            <strong>Visit Dates:</strong> {visitOccurrence?.visit_start_date} ~{" "}
+            <strong>Visit Dates:</strong> {visitOccurrence?.visit_start_date} ~{' '}
             {visitOccurrence?.visit_end_date}
           </span>
           <span className="info">
@@ -20,13 +20,13 @@ export default function CDMInfo({ visitOccurrence, careSite, location }) {
         </div>
         <div className="care-info">
           <span className="info">
-            <strong>Care Site:</strong> {careSite?.care_site_name || "No data"}
+            <strong>Care Site:</strong> {careSite?.care_site_name || 'No data'}
           </span>
           <span className="info">
-            <strong>Address:</strong>{" "}
+            <strong>Address:</strong>{' '}
             {location
               ? `${location?.address_1}, ${location?.address_2} / ${location?.zip}`
-              : "No data"}
+              : 'No data'}
           </span>
         </div>
       </div>

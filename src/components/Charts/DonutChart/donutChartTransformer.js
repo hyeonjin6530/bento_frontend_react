@@ -15,8 +15,8 @@ export function transformDonutChartToTableData(donutChartData) {
   ];
 
   const headers = [
-    "Category",
-    ...dataArray.map((d) => d.cohortName || "Value"),
+    'Category',
+    ...dataArray.map((d) => d.cohortName || 'Value'),
   ];
 
   const rows = categories.map((category) => {
@@ -36,7 +36,7 @@ export function transformDonutChartToTableData(donutChartData) {
         );
         const value = cohort.data[category] || 0;
         const percent = ((value / totalValue) * 100).toFixed(2);
-        row["Value"] = `${value.toLocaleString()} (${percent}%)`;
+        row['Value'] = `${value.toLocaleString()} (${percent}%)`;
       }
     });
 

@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
-import * as d3 from "d3";
+import React, { useRef, useEffect, useState, useCallback } from 'react';
+import * as d3 from 'd3';
 
 const LineChart = ({ data = [], cohortColorMap = {}, showLegend = true }) => {
   const chartContainerRef = useRef(null);
@@ -35,27 +35,27 @@ const LineChart = ({ data = [], cohortColorMap = {}, showLegend = true }) => {
       left: 50,
     };
 
-    d3.select(container).selectAll("*").remove();
+    d3.select(container).selectAll('*').remove();
 
     const svg = d3
       .select(container)
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .attr("viewBox", [0, 0, width, height]);
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('viewBox', [0, 0, width, height]);
 
     const tooltip = d3
-      .select("body")
-      .append("div")
-      .attr("class", "tooltip")
-      .style("position", "absolute")
-      .style("display", "none")
-      .style("pointer-events", "none")
-      .style("background", "white")
-      .style("border", "1px solid #eee")
-      .style("border-radius", "4px")
-      .style("padding", "0")
-      .style("z-index", "100");
+      .select('body')
+      .append('div')
+      .attr('class', 'tooltip')
+      .style('position', 'absolute')
+      .style('display', 'none')
+      .style('pointer-events', 'none')
+      .style('background', 'white')
+      .style('border', '1px solid #eee')
+      .style('border-radius', '4px')
+      .style('padding', '0')
+      .style('z-index', '100');
     const x = d3
       .scaleBand()
       .domain(data.map((d) => d.label))
@@ -70,17 +70,17 @@ const LineChart = ({ data = [], cohortColorMap = {}, showLegend = true }) => {
 
     const xAxis = (g) =>
       g
-        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .attr('transform', `translate(0,${height - margin.bottom})`)
         .call(d3.axisBottom(x))
-        .selectAll("text")
-        .attr("transform", "rotate(-45)")
-        .style("text-anchor", "end");
+        .selectAll('text')
+        .attr('transform', 'rotate(-45)')
+        .style('text-anchor', 'end');
 
     const yAxis = (g) =>
-      g.attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y));
+      g.attr('transform', `translate(${margin.left},0)`).call(d3.axisLeft(y));
 
-    svg.append("g").call(xAxis);
-    svg.append("g").call(yAxis);
+    svg.append('g').call(xAxis);
+    svg.append('g').call(yAxis);
 
     const line = d3
       .line()
@@ -95,36 +95,36 @@ const LineChart = ({ data = [], cohortColorMap = {}, showLegend = true }) => {
 
       // 선과 점을 그리는 로직...
       svg
-        .append("path")
+        .append('path')
         .datum(values)
-        .attr("fill", "none")
-        .attr("stroke", cohortColorMap[series] || "#ccc")
-        .attr("stroke-width", 2)
-        .attr("d", line)
-        .style("opacity", opacity);
+        .attr('fill', 'none')
+        .attr('stroke', cohortColorMap[series] || '#ccc')
+        .attr('stroke-width', 2)
+        .attr('d', line)
+        .style('opacity', opacity);
 
       svg
         .selectAll(`circle-${series}`)
         .data(values)
-        .join("circle")
-        .attr("cx", (d) => x(d.label) + x.bandwidth() / 2)
-        .attr("cy", (d) => y(d.value))
-        .attr("r", 4)
-        .attr("fill", cohortColorMap[series])
-        .attr("stroke", "white")
-        .attr("stroke-width", 2)
-        .attr("class", `point-${series}`)
-        .style("opacity", opacity)
-        .style("pointer-events", isVisible ? "auto" : "none")
-        .on("mouseover", function (event, d) {
+        .join('circle')
+        .attr('cx', (d) => x(d.label) + x.bandwidth() / 2)
+        .attr('cy', (d) => y(d.value))
+        .attr('r', 4)
+        .attr('fill', cohortColorMap[series])
+        .attr('stroke', 'white')
+        .attr('stroke-width', 2)
+        .attr('class', `point-${series}`)
+        .style('opacity', opacity)
+        .style('pointer-events', isVisible ? 'auto' : 'none')
+        .on('mouseover', function (event, d) {
           if (!visibleSeries.has(series)) return;
 
-          d3.select(this).transition().duration(200).attr("r", 6);
+          d3.select(this).transition().duration(200).attr('r', 6);
 
           tooltip
-            .style("display", "block")
-            .style("left", event.pageX + 10 + "px")
-            .style("top", event.pageY - 10 + "px").html(`
+            .style('display', 'block')
+            .style('left', event.pageX + 10 + 'px')
+            .style('top', event.pageY - 10 + 'px').html(`
                             <div class="p-1">
                                 <div class="text-[10px] font-semibold mb-0.5">${series}</div>
                                 <div class="text-[9px] text-gray-600">
@@ -134,40 +134,40 @@ const LineChart = ({ data = [], cohortColorMap = {}, showLegend = true }) => {
                             </div>
                         `);
         })
-        .on("mouseout", function () {
+        .on('mouseout', function () {
           if (!visibleSeries.has(series)) return;
 
-          d3.select(this).transition().duration(200).attr("r", 4);
+          d3.select(this).transition().duration(200).attr('r', 4);
 
-          tooltip.style("display", "none");
+          tooltip.style('display', 'none');
         });
     });
 
     // ... 범례 그리기 로직 (클릭 시 toggleSeries 호출)
     if (showLegend) {
       const legend = svg
-        .append("g")
+        .append('g')
         .attr(
-          "transform",
+          'transform',
           `translate(${width - margin.right + 10}, ${margin.top})`,
         );
 
       legend
-        .selectAll("g")
+        .selectAll('g')
         .data(seriesData)
-        .join("g")
-        .attr("transform", (d, i) => `translate(0, ${i * 20})`)
-        .attr("cursor", "pointer")
-        .on("click", (event, d) => toggleSeries(d[0]))
+        .join('g')
+        .attr('transform', (d, i) => `translate(0, ${i * 20})`)
+        .attr('cursor', 'pointer')
+        .on('click', (event, d) => toggleSeries(d[0]))
         .call((g) => {
-          g.append("rect")
-            .attr("width", 12)
-            .attr("height", 12)
-            .attr("fill", (d) => cohortColorMap[d[0]])
-            .style("opacity", (d) => (visibleSeries.has(d[0]) ? 1 : 0.2));
-          g.append("text")
-            .attr("x", 20)
-            .attr("y", 9.5)
+          g.append('rect')
+            .attr('width', 12)
+            .attr('height', 12)
+            .attr('fill', (d) => cohortColorMap[d[0]])
+            .style('opacity', (d) => (visibleSeries.has(d[0]) ? 1 : 0.2));
+          g.append('text')
+            .attr('x', 20)
+            .attr('y', 9.5)
             .text((d) => d[0]);
         });
     }
@@ -189,20 +189,20 @@ const LineChart = ({ data = [], cohortColorMap = {}, showLegend = true }) => {
       if (chartContainerRef.current) {
         observer.unobserve(chartContainerRef.current);
       }
-      d3.select("body").selectAll(".tooltip").remove();
+      d3.select('body').selectAll('.tooltip').remove();
     };
   }, [drawChart]);
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative h-full w-full">
       {(!data || data.length === 0) && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-xs text-gray-500 text-center">
+          <p className="text-center text-xs text-gray-500">
             Currently, no data is available for display.
           </p>
         </div>
       )}
-      <div ref={chartContainerRef} className="w-full h-full"></div>
+      <div ref={chartContainerRef} className="h-full w-full"></div>
     </div>
   );
 };

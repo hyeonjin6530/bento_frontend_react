@@ -1,10 +1,10 @@
-import React, { useRef, useEffect, useCallback } from "react";
-import * as d3 from "d3";
-import "./BoxPlot.css";
+import React, { useRef, useEffect, useCallback } from 'react';
+import * as d3 from 'd3';
+import './BoxPlot.css';
 
 const BoxPlot = ({
   data,
-  colors = ["#4595EC", "#FF6B6B", "#FFD166", "#06D6A0", "#9D8DF1"],
+  colors = ['#4595EC', '#FF6B6B', '#FFD166', '#06D6A0', '#9D8DF1'],
 }) => {
   const svgContainerRef = useRef(null);
 
@@ -35,25 +35,25 @@ const BoxPlot = ({
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    svgContainer.innerHTML = "";
+    svgContainer.innerHTML = '';
 
     const svg = d3
-      .create("svg")
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .attr("viewBox", `0 0 ${width} ${height}`);
+      .create('svg')
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .attr('viewBox', `0 0 ${width} ${height}`);
 
     const tooltip = d3
       .select(document.body)
-      .append("div")
+      .append('div')
       .attr(
-        "class",
-        "boxplot-tooltip fixed hidden bg-black/80 text-white px-3 py-2 rounded-md text-xs pointer-events-none",
+        'class',
+        'boxplot-tooltip fixed hidden bg-black/80 text-white px-3 py-2 rounded-md text-xs pointer-events-none',
       );
 
     const g = svg
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
+      .append('g')
+      .attr('transform', `translate(${margin.left},${margin.top})`);
 
     const boxplotData = [];
     const groupNames = data.definition.groups.map((g) => g.name);
@@ -72,12 +72,12 @@ const BoxPlot = ({
           outliers: [],
         };
         groupValues.forEach((item) => {
-          if (item.type === "minimum") groupData.min = item.value;
-          else if (item.type === "maximum") groupData.max = item.value;
-          else if (item.type === "median") groupData.median = item.value;
-          else if (item.type === "lower") groupData.q1 = item.value;
-          else if (item.type === "upper") groupData.q3 = item.value;
-          else if (item.type === "outlier") groupData.outliers.push(item.value);
+          if (item.type === 'minimum') groupData.min = item.value;
+          else if (item.type === 'maximum') groupData.max = item.value;
+          else if (item.type === 'median') groupData.median = item.value;
+          else if (item.type === 'lower') groupData.q1 = item.value;
+          else if (item.type === 'upper') groupData.q3 = item.value;
+          else if (item.type === 'outlier') groupData.outliers.push(item.value);
         });
         boxplotData.push(groupData);
       });
@@ -91,7 +91,7 @@ const BoxPlot = ({
       .scaleOrdinal()
       .domain(targets)
       .range(colors)
-      .unknown("#ccc");
+      .unknown('#ccc');
 
     // X축 스케일 - 그룹별 스케일
     const xGroupScale = d3
@@ -133,39 +133,39 @@ const BoxPlot = ({
       .nice();
 
     // 배경 그리드
-    g.append("g")
-      .attr("class", "grid")
-      .call(d3.axisLeft(y).tickSize(-innerWidth).tickFormat(""))
-      .call((g) => g.select(".domain").remove())
+    g.append('g')
+      .attr('class', 'grid')
+      .call(d3.axisLeft(y).tickSize(-innerWidth).tickFormat(''))
+      .call((g) => g.select('.domain').remove())
       .call((g) =>
         g
-          .selectAll(".tick line")
-          .attr("stroke", "#e0e0e0")
-          .attr("stroke-opacity", 0.5)
-          .attr("stroke-dasharray", "2,2"),
+          .selectAll('.tick line')
+          .attr('stroke', '#e0e0e0')
+          .attr('stroke-opacity', 0.5)
+          .attr('stroke-dasharray', '2,2'),
       );
 
     // X축 (그룹)
-    g.append("g")
-      .attr("class", "x-axis")
-      .attr("transform", `translate(0,${innerHeight})`)
+    g.append('g')
+      .attr('class', 'x-axis')
+      .attr('transform', `translate(0,${innerHeight})`)
       .call(d3.axisBottom(xGroupScale))
-      .call((g) => g.select(".domain").attr("stroke", "#888"))
-      .selectAll("text")
-      .style("font-size", "11px")
-      .style("font-weight", "500")
-      .attr("fill", "#444")
-      .attr("dy", "0.5em");
+      .call((g) => g.select('.domain').attr('stroke', '#888'))
+      .selectAll('text')
+      .style('font-size', '11px')
+      .style('font-weight', '500')
+      .attr('fill', '#444')
+      .attr('dy', '0.5em');
 
     // Y축
-    g.append("g")
-      .attr("class", "y-axis")
+    g.append('g')
+      .attr('class', 'y-axis')
       .call(d3.axisLeft(y).ticks(5))
-      .call((g) => g.select(".domain").attr("stroke", "#888"))
-      .selectAll("text")
-      .style("font-size", "10px")
-      .style("font-weight", "400")
-      .attr("fill", "#444");
+      .call((g) => g.select('.domain').attr('stroke', '#888'))
+      .selectAll('text')
+      .style('font-size', '10px')
+      .style('font-weight', '400')
+      .attr('fill', '#444');
 
     // 범례 추가
     const legendItemSize = 10;
@@ -186,33 +186,33 @@ const BoxPlot = ({
 
     // 범례 그룹
     const legend = svg
-      .append("g")
-      .attr("transform", `translate(${startX}, ${margin.top / 2})`);
+      .append('g')
+      .attr('transform', `translate(${startX}, ${margin.top / 2})`);
 
     let legendX = 0;
     targets.forEach((target, i) => {
       const legendGroup = legend
-        .append("g")
-        .attr("transform", `translate(${legendX}, 0)`);
+        .append('g')
+        .attr('transform', `translate(${legendX}, 0)`);
 
       // 색상 박스
       legendGroup
-        .append("rect")
-        .attr("width", legendItemSize)
-        .attr("height", legendItemSize)
-        .attr("fill", color(target))
-        .attr("rx", 2)
-        .attr("ry", 2);
+        .append('rect')
+        .attr('width', legendItemSize)
+        .attr('height', legendItemSize)
+        .attr('fill', color(target))
+        .attr('rx', 2)
+        .attr('ry', 2);
 
       // 텍스트
       legendGroup
-        .append("text")
-        .attr("x", legendItemSize + legendTextPadding)
-        .attr("y", legendItemSize / 2)
-        .attr("dy", "0.35em")
+        .append('text')
+        .attr('x', legendItemSize + legendTextPadding)
+        .attr('y', legendItemSize / 2)
+        .attr('dy', '0.35em')
         .text(target)
-        .style("font-size", "10px")
-        .attr("fill", "#444");
+        .style('font-size', '10px')
+        .attr('fill', '#444');
 
       // 다음 항목 위치
       legendX += legendItemWidths[i];
@@ -236,56 +236,56 @@ const BoxPlot = ({
 
       // 박스플롯 그룹
       const boxGroup = g
-        .append("g")
-        .attr("class", "box-group")
-        .attr("transform", `translate(${boxX}, 0)`);
+        .append('g')
+        .attr('class', 'box-group')
+        .attr('transform', `translate(${boxX}, 0)`);
 
       // 수직선 (min에서 max까지)
       boxGroup
-        .append("line")
-        .attr("class", "vertical-line")
-        .attr("y1", y(d.min))
-        .attr("y2", y(d.max))
-        .attr("x1", boxWidth / 2)
-        .attr("x2", boxWidth / 2)
-        .attr("stroke", d.color)
-        .attr("stroke-width", 1.5);
+        .append('line')
+        .attr('class', 'vertical-line')
+        .attr('y1', y(d.min))
+        .attr('y2', y(d.max))
+        .attr('x1', boxWidth / 2)
+        .attr('x2', boxWidth / 2)
+        .attr('stroke', d.color)
+        .attr('stroke-width', 1.5);
 
       // 중앙값 라인
       boxGroup
-        .append("line")
-        .attr("class", "median-line")
-        .attr("y1", y(d.median))
-        .attr("y2", y(d.median))
-        .attr("x1", 0)
-        .attr("x2", boxWidth)
-        .attr("stroke", d.color)
-        .attr("stroke-width", 2);
+        .append('line')
+        .attr('class', 'median-line')
+        .attr('y1', y(d.median))
+        .attr('y2', y(d.median))
+        .attr('x1', 0)
+        .attr('x2', boxWidth)
+        .attr('stroke', d.color)
+        .attr('stroke-width', 2);
 
       // 박스 (q1에서 q3까지)
       boxGroup
-        .append("rect")
+        .append('rect')
         .attr(
-          "class",
-          "box hover:brightness-110 cursor-pointer transition-all duration-200",
+          'class',
+          'box hover:brightness-110 cursor-pointer transition-all duration-200',
         )
-        .attr("y", y(d.q3))
-        .attr("height", y(d.q1) - y(d.q3))
-        .attr("width", boxWidth)
-        .attr("fill", d.color)
-        .attr("fill-opacity", 0.7)
-        .attr("stroke", d3.color(d.color).darker(0.5))
-        .attr("stroke-width", 1)
-        .attr("rx", 2) // 모서리 둥글게
-        .on("mouseover", function (event) {
+        .attr('y', y(d.q3))
+        .attr('height', y(d.q1) - y(d.q3))
+        .attr('width', boxWidth)
+        .attr('fill', d.color)
+        .attr('fill-opacity', 0.7)
+        .attr('stroke', d3.color(d.color).darker(0.5))
+        .attr('stroke-width', 1)
+        .attr('rx', 2) // 모서리 둥글게
+        .on('mouseover', function (event) {
           // 박스 강조
           d3.select(this)
-            .attr("stroke", "#333")
-            .attr("stroke-width", 2)
-            .attr("fill-opacity", 0.9);
+            .attr('stroke', '#333')
+            .attr('stroke-width', 2)
+            .attr('fill-opacity', 0.9);
 
           // 툴팁 표시
-          tooltip.classed("hidden", false).html(`
+          tooltip.classed('hidden', false).html(`
               <div class="text-center mb-1">
                 <strong>${d.group}</strong> | <span style="color: ${d.color}">${d.target}</span>
               </div>
@@ -302,57 +302,57 @@ const BoxPlot = ({
 
           tooltip
             .style(
-              "left",
+              'left',
               `${boxRect.left + boxRect.width / 2 - tooltipRect.width / 2}px`,
             )
-            .style("top", `${boxRect.top - tooltipRect.height - 10}px`);
+            .style('top', `${boxRect.top - tooltipRect.height - 10}px`);
         })
-        .on("mouseout", function () {
+        .on('mouseout', function () {
           // 원래 스타일로 복원
           d3.select(this)
-            .attr("stroke", d3.color(d.color).darker(0.5))
-            .attr("stroke-width", 1)
-            .attr("fill-opacity", 0.7);
+            .attr('stroke', d3.color(d.color).darker(0.5))
+            .attr('stroke-width', 1)
+            .attr('fill-opacity', 0.7);
 
           // 툴팁 숨기기
-          tooltip.classed("hidden", true);
+          tooltip.classed('hidden', true);
         });
 
       // 위쪽, 아래쪽 가로선 (min, max)
       [
-        { type: "min", value: d.min },
-        { type: "max", value: d.max },
+        { type: 'min', value: d.min },
+        { type: 'max', value: d.max },
       ].forEach((item) => {
         boxGroup
-          .append("line")
-          .attr("class", `${item.type}-line`)
-          .attr("y1", y(item.value))
-          .attr("y2", y(item.value))
-          .attr("x1", boxWidth / 2 - 10)
-          .attr("x2", boxWidth / 2 + 10)
-          .attr("stroke", d.color)
-          .attr("stroke-width", 1.5);
+          .append('line')
+          .attr('class', `${item.type}-line`)
+          .attr('y1', y(item.value))
+          .attr('y2', y(item.value))
+          .attr('x1', boxWidth / 2 - 10)
+          .attr('x2', boxWidth / 2 + 10)
+          .attr('stroke', d.color)
+          .attr('stroke-width', 1.5);
       });
 
       // 이상치 (outliers)
       if (d.outliers && d.outliers.length > 0) {
         d.outliers.forEach((value) => {
           boxGroup
-            .append("circle")
+            .append('circle')
             .attr(
-              "class",
-              "outlier hover:r-[5px] hover:stroke-2 cursor-pointer transition-all duration-200",
+              'class',
+              'outlier hover:r-[5px] hover:stroke-2 cursor-pointer transition-all duration-200',
             )
-            .attr("cx", boxWidth / 2)
-            .attr("cy", y(value))
-            .attr("r", 3)
-            .attr("fill", "#fff")
-            .attr("stroke", d.color)
-            .attr("stroke-width", 1)
-            .on("mouseover", function (event) {
-              d3.select(this).attr("r", 5).attr("stroke-width", 2);
+            .attr('cx', boxWidth / 2)
+            .attr('cy', y(value))
+            .attr('r', 3)
+            .attr('fill', '#fff')
+            .attr('stroke', d.color)
+            .attr('stroke-width', 1)
+            .on('mouseover', function (event) {
+              d3.select(this).attr('r', 5).attr('stroke-width', 2);
 
-              tooltip.classed("hidden", false).html(`
+              tooltip.classed('hidden', false).html(`
                   <div class="text-center mb-1">
                     <strong>${d.group}</strong> | <span style="color: ${d.color}">${d.target}</span>
                   </div>
@@ -364,15 +364,15 @@ const BoxPlot = ({
 
               tooltip
                 .style(
-                  "left",
+                  'left',
                   `${circleRect.left + circleRect.width / 2 - tooltipRect.width / 2}px`,
                 )
-                .style("top", `${circleRect.top - tooltipRect.height - 10}px`);
+                .style('top', `${circleRect.top - tooltipRect.height - 10}px`);
             })
-            .on("mouseout", function () {
-              d3.select(this).attr("r", 3).attr("stroke-width", 1);
+            .on('mouseout', function () {
+              d3.select(this).attr('r', 3).attr('stroke-width', 1);
 
-              tooltip.classed("hidden", true);
+              tooltip.classed('hidden', true);
             });
         });
       }
@@ -407,7 +407,7 @@ const BoxPlot = ({
   return (
     <div
       ref={svgContainerRef}
-      className="w-full h-full flex items-center justify-center relative"
+      className="relative flex h-full w-full items-center justify-center"
     ></div>
   );
 };
